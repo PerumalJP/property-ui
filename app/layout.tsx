@@ -1,44 +1,29 @@
-@import "tailwindcss";
+import type { Metadata } from "next";
+import { Geist, Geist_Mono } from "next/font/google";
+import "./globals.css";
 
-:root {
-  --background: #f8fafc;
-  --foreground: #0f172a;
-}
+const geistSans = Geist({
+  variable: "--font-geist-sans",
+  subsets: ["latin"],
+});
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
-}
+const geistMono = Geist_Mono({
+  variable: "--font-geist-mono",
+  subsets: ["latin"],
+});
 
-* {
-  box-sizing: border-box;
-}
+export const metadata: Metadata = {
+  title: "Harbor & Home",
+  description: "Luxury property advisors",
+};
 
-html {
-  scroll-behavior: smooth;
-}
-
-body {
-  margin: 0;
-  min-height: 100vh;
-  background: var(--background);
-  color: var(--foreground);
-  font-family: var(--font-sans);
-}
-
-a {
-  text-decoration: none;
-}
-
-button,
-input,
-select,
-textarea {
-  font: inherit;
-}
-
-img {
-  display: block;
-  max-width: 100%;
+export default function RootLayout({ children }: { children: React.ReactNode }) {
+  return (
+    <html
+      lang="en"
+      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+    >
+      <body className="min-h-full flex flex-col">{children}</body>
+    </html>
+  );
 }
